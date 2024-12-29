@@ -46,7 +46,7 @@ class MainTest {
         int expectedId = 1;
         String expectedName = "John Doe";
         double expectedSalary = 1000.0;
-        Experience expectedExperience = Experience.JUNIOR;
+        Experience expectedExperience = Experience.JUNİOR;
         
         Developer developer = new Developer(expectedId, expectedName, expectedSalary, expectedExperience);
 
@@ -69,9 +69,9 @@ class MainTest {
     @DisplayName("Test Experience Enum Values")
     void testEnumValuesExist() {
         
-        assertTrue(containsEnumValue("JUNIOR"), "JUNIOR should be a valid Experience enum value.");
-        assertTrue(containsEnumValue("MID"), "MID should be a valid Experience enum value.");
-        assertTrue(containsEnumValue("SENIOR"), "SENIOR should be a valid Experience enum value.");
+        assertTrue(containsEnumValue("JUNİOR"), "JUNIOR should be a valid Experience enum value.");
+        assertTrue(containsEnumValue("MİD"), "MID should be a valid Experience enum value.");
+        assertTrue(containsEnumValue("SENİOR"), "SENIOR should be a valid Experience enum value.");
     }
 
     private boolean containsEnumValue(String value) {
@@ -89,7 +89,7 @@ class MainTest {
 
         JuniorDeveloper juniorDeveloper = new JuniorDeveloper(1, "Test Developer", 50000.0);
         assertTrue(juniorDeveloper instanceof Developer, "JuniorDeveloper should extend Developer.");
-        assertEquals(Experience.JUNIOR, juniorDeveloper.getExperience(), "Experience should be JUNIOR.");
+        assertEquals(Experience.JUNİOR, juniorDeveloper.getExperience(), "Experience should be JUNIOR.");
     }
     @Test
     @DisplayName("Test MidDeveloper Existence and Inheritance")
@@ -97,7 +97,7 @@ class MainTest {
 
         MidDeveloper midDeveloper = new MidDeveloper(1, "Test Developer", 60000.0);
         assertTrue(midDeveloper instanceof Developer, "MidDeveloper should extend Developer.");
-        assertEquals(Experience.MID, midDeveloper.getExperience(), "Experience should be MID.");
+        assertEquals(Experience.MİD, midDeveloper.getExperience(), "Experience should be MID.");
     }
 
     @Test
@@ -106,7 +106,7 @@ class MainTest {
 
         SeniorDeveloper seniorDeveloper = new SeniorDeveloper(1, "Test Developer", 80000.0);
         assertTrue(seniorDeveloper instanceof Developer, "SeniorDeveloper should extend Developer.");
-        assertEquals(Experience.SENIOR, seniorDeveloper.getExperience(), "Experience should be SENIOR.");
+        assertEquals(Experience.SENİOR, seniorDeveloper.getExperience(), "Experience should be SENIOR.");
     }
     
     
@@ -146,7 +146,7 @@ class MainTest {
         controller = new DeveloperController(new DeveloperTax());
         // Simulate @PostConstruct call if necessary. In reality, this is managed by Spring.
         controller.init();
-        Developer developer = new Developer(1, "Initial Developer", 5000.0, Experience.JUNIOR);
+        Developer developer = new Developer(1, "Initial Developer", 5000.0, Experience.JUNİOR);
         mockMvc.perform(post("/developers")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(developer)))
@@ -199,7 +199,7 @@ class MainTest {
     @DisplayName("DeveloperController:AddDeveloper")
     @Order(2)
     void testAddDeveloper() throws Exception {
-        Developer newDeveloper = new Developer(2, "New Developer", 6000.0, Experience.MID);
+        Developer newDeveloper = new Developer(2, "New Developer", 6000.0, Experience.MİD);
         mockMvc.perform(post("/developers")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(newDeveloper)))
@@ -228,7 +228,7 @@ class MainTest {
     @DisplayName("DeveloperController:UpdateDeveloper")
     @Order(5)
     void testUpdateDeveloper() throws Exception {
-        Developer updatedDeveloper = new Developer(1, "Updated Developer", 7000.0, Experience.SENIOR);
+        Developer updatedDeveloper = new Developer(1, "Updated Developer", 7000.0, Experience.SENİOR);
         mockMvc.perform(put("/developers/{id}", 1)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(updatedDeveloper)))
